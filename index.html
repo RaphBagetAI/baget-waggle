@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waggle - Connect with Trusted Urban Dog Walkers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Source+Sans+3&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: #FAFAF7;
+      color: #1A1A1A;
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 0;
+      font-weight: 700;
+      color: #1A1A1A;
+    }
+
+    h1 {
+      font-size: 3.25rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      border-bottom: 1px solid #D8D2BA;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    p {
+      max-width: 700px;
+      font-weight: 400;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #3E3E3E;
+    }
+
+    a {
+      text-decoration: none;
+      color: #C9A96E;
+      transition: color 0.3s ease;
+    }
+
+    a:hover, a:focus {
+      color: #AC8E38;
+      outline: none;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    header {
+      padding: 3rem 1rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: #0A1F44;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      color: #3E3E3E;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      background-color: #C9A96E;
+      color: #FAFAF7;
+      border: none;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      font-size: 1.125rem;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background-color 0.3s ease;
+      width: 240px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover, .btn:focus {
+      background-color: #AC8E38;
+      outline: none;
+    }
+
+    section {
+      margin-top: 4rem;
+      padding: 0 1rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #D8D2BA;
+      margin: 4rem 0;
+    }
+
+    .trust-section {
+      background: #FFFFFF;
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: 4rem auto 2rem;
+      border: 1px solid #D8D2BA;
+    }
+
+    .trust-logos {
+      display: flex;
+      justify-content: space-around;
+      max-width: 600px;
+      margin: 1rem auto 0;
+      gap: 3rem;
+    }
+
+    .trust-logos img {
+      height: 40px;
+      filter: grayscale(100%);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .trust-logos img:hover {
+      filter: none;
+      opacity: 1;
+    }
+
+    .form-section {
+      background: #FFFFFF;
+      padding: 2rem 2rem 2rem 2rem;
+      border: 1px solid #D8D2BA;
+      max-width: 450px;
+      box-sizing: border-box;
+      margin: 2rem auto 4rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1A1A1A;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #D8D2BA;
+      font-size: 1rem;
+      font-family: 'Source Sans 3', sans-serif;
+      resize: vertical;
+      border-radius: 0;
+      color: #1A1A1A;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    input[type="submit"] {
+      background-color: #C9A96E;
+      color: #FAFAF7;
+      padding: 1rem 1.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover, input[type="submit"]:focus {
+      background-color: #AC8E38;
+      outline: none;
+    }
+
+    .form-success {
+      font-weight: 600;
+      color: #0A1F44;
+      margin-top: 1rem;
+    }
+
+    .nav {
+      width: 100%;
+      border-bottom: 1px solid #D8D2BA;
+      background: #FFFFFF;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #0A1F44;
+      letter-spacing: 0.15em;
+      user-select: none;
+    }
+
+    footer {
+      background: #FAFAF7;
+      border-top: 1px solid #D8D2BA;
+      color: #3E3E3E;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1rem 0;
+      margin-top: 4rem;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.25rem;
+      }
+      .btn {
+        width: 100%;
+        padding: 1rem;
+      }
+      .hero-cta {
+        gap: 1rem;
+        flex-direction: column;
+      }
+      .trust-logos {
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 100%;
+        margin: 1rem 0 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">WAGGLE</nav>
+  <header class="container">
+    <h1>Reliable Urban Dog Walking, Professional & Transparent</h1>
+    <p class="hero-sub">Connect with trusted local dog walkers or join as a professional walker keeping 90% of your earnings. Designed for busy urban pet owners and serious walkers.</p>
+    <div class="hero-cta">
+      <a href="#join-walkers" class="btn">Become a Walker</a>
+      <a href="#find-walker" class="btn">Find a Walker</a>
+    </div>
+  </header>
+
+  <section id="about" class="container">
+    <h2>Why Waggle?</h2>
+    <p>Waggle prioritizes professional dog walkers by offering the lowest commissions in the industry (10%) and pro operational support to simplify busy city routes, building access, and schedule coordination.</p>
+    <p>For pet owners, we offer verified, experienced walkers you can trust to care for your furry family member with peace of mind, backed by a transparent community-driven platform.</p>
+  </section>
+
+  <hr />
+
+  <section id="trust" class="trust-section">
+    <h2>Trusted by Industry Pros & Pet Owners</h2>
+    <p>Our platform is trusted by professional dog walking communities and urban pet owners alike for its transparency and reliability.</p>
+    <div class="trust-logos">
+      <img src="images/trust-community.svg" alt="Community Trusted" />
+      <img src="images/trust-transparency.svg" alt="Radical Transparency" />
+      <img src="images/trust-pro-tools.svg" alt="Professional Tools" />
+    </div>
+  </section>
+
+  <section id="join-walkers" class="form-section">
+    <h2>Join Waggle as a Walker</h2>
+    <form id="walkerForm">
+      <label for="walkerName">Full Name</label>
+      <input type="text" id="walkerName" name="name" required />
+
+      <label for="walkerEmail">Email Address</label>
+      <input type="email" id="walkerEmail" name="email" required />
+
+      <label for="walkerPhone">Phone Number</label>
+      <input type="text" id="walkerPhone" name="phone" required />
+
+      <label for="walkerNeighborhood">Neighborhood</label>
+      <input type="text" id="walkerNeighborhood" name="neighborhood" required />
+
+      <label for="walkerMessage">Why do you want to join Waggle?</label>
+      <textarea id="walkerMessage" name="message" required></textarea>
+
+      <input type="submit" value="Join as Walker" />
+      <p id="walkerSuccess" class="form-success" style="display:none;">Thanks for joining! We&rsquo;ll be in touch soon.</p>
+      <p id="walkerError" style="color:#C90000; display:none;">Submission failed. Please try again.</p>
+    </form>
+  </section>
+
+  <section id="find-walker" class="form-section">
+    <h2>Find a Trusted Walker</h2>
+    <form id="ownerForm">
+      <label for="ownerName">Full Name</label>
+      <input type="text" id="ownerName" name="name" required />
+
+      <label for="ownerEmail">Email Address</label>
+      <input type="email" id="ownerEmail" name="email" required />
+
+      <label for="ownerPhone">Phone Number</label>
+      <input type="text" id="ownerPhone" name="phone" required />
+
+      <label for="ownerNeighborhood">Neighborhood</label>
+      <input type="text" id="ownerNeighborhood" name="neighborhood" required />
+
+      <label for="ownerMessage">Any specific requirements?</label>
+      <textarea id="ownerMessage" name="message"></textarea>
+
+      <input type="submit" value="Request Walker Info" />
+      <p id="ownerSuccess" class="form-success" style="display:none;">Thanks for your interest! We'll connect you soon.</p>
+      <p id="ownerError" style="color:#C90000; display:none;">Submission failed. Please try again.</p>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Waggle. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const databaseId = "83830f40-0b48-4442-b449-02288a409491";
+
+    function submitForm(formId, type) {
+      const form = document.getElementById(formId);
+      const successMsg = form.querySelector('.form-success');
+      const errorMsg = form.querySelector('[style*="color:#C90000"]');
+
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+
+        const formData = new FormData(form);
+        const data = {
+          type,
+          name: formData.get('name').trim(),
+          email: formData.get('email').trim(),
+          phone: formData.get('phone').trim(),
+          neighborhood: formData.get('neighborhood').trim(),
+          message: formData.get('message')?.trim() || '',
+        };
+
+        try {
+          const response = await fetch(`https://app.baget.ai/api/public/databases/${databaseId}/rows`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data }),
+          });
+
+          if (response.ok) {
+            form.reset();
+            successMsg.style.display = 'block';
+          } else {
+            throw new Error('Network error');
+          }
+        } catch (error) {
+          errorMsg.style.display = 'block';
+        }
+      });
+    }
+
+    submitForm('walkerForm', 'walker');
+    submitForm('ownerForm', 'owner');
+  </script>
+</body>
+</html>
