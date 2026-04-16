@@ -305,14 +305,11 @@
       <label for="walkerEmail">Email Address</label>
       <input type="email" id="walkerEmail" name="email" required />
 
-      <label for="walkerPhone">Phone Number</label>
-      <input type="text" id="walkerPhone" name="phone" required />
+      <label for="walkerExperience">Experience Level</label>
+      <input type="text" id="walkerExperience" name="experience" placeholder="E.g., 3 years professional walking" required />
 
-      <label for="walkerNeighborhood">Neighborhood</label>
-      <input type="text" id="walkerNeighborhood" name="neighborhood" required />
-
-      <label for="walkerMessage">Why do you want to join Waggle?</label>
-      <textarea id="walkerMessage" name="message" required></textarea>
+      <label for="walkerLocation">Location</label>
+      <input type="text" id="walkerLocation" name="location" required />
 
       <input type="submit" value="Join as Walker" />
       <p id="walkerSuccess" class="form-success" style="display:none;">Thanks for joining! We&rsquo;ll be in touch soon.</p>
@@ -324,19 +321,16 @@
     <h2>Find a Trusted Walker</h2>
     <form id="ownerForm">
       <label for="ownerName">Full Name</label>
-      <input type="text" id="ownerName" name="name" required />
+      <input type="text" id="ownerName" name="owner_name" required />
 
       <label for="ownerEmail">Email Address</label>
       <input type="email" id="ownerEmail" name="email" required />
 
-      <label for="ownerPhone">Phone Number</label>
-      <input type="text" id="ownerPhone" name="phone" required />
+      <label for="dogInfo">Dog Information</label>
+      <textarea id="dogInfo" name="dog_info" placeholder="E.g., Breed, size, walking needs" required></textarea>
 
       <label for="ownerNeighborhood">Neighborhood</label>
       <input type="text" id="ownerNeighborhood" name="neighborhood" required />
-
-      <label for="ownerMessage">Any specific requirements?</label>
-      <textarea id="ownerMessage" name="message"></textarea>
 
       <input type="submit" value="Request Walker Info" />
       <p id="ownerSuccess" class="form-success" style="display:none;">Thanks for your interest! We'll connect you soon.</p>
@@ -349,9 +343,12 @@
   </footer>
 
   <script>
-    const databaseId = "83830f40-0b48-4442-b449-02288a409491";
+    // Waggle_Leads database (Walker_Applications table) ID
+    const walkerDbId = "f2934e10-d523-42ce-b239-cc8d329c6d2e";
+    // Booking_Requests database ID
+    const bookingDbId = "3fe8c7b4-a111-4cc7-8cf7-fd715113ee99";
 
-    function submitForm(formId, type) {
+    function submitForm(formId, dbId, fieldMap) {
       const form = document.getElementById(formId);
       const successMsg = form.querySelector('.form-success');
       const errorMsg = form.querySelector('[style*="color:#C90000"]');
@@ -362,17 +359,13 @@
         errorMsg.style.display = 'none';
 
         const formData = new FormData(form);
-        const data = {
-          type,
-          name: formData.get('name').trim(),
-          email: formData.get('email').trim(),
-          phone: formData.get('phone').trim(),
-          neighborhood: formData.get('neighborhood').trim(),
-          message: formData.get('message')?.trim() || '',
-        };
+        const data = {};
+        for (const key in fieldMap) {
+          data[key] = formData.get(fieldMap[key])?.trim() || '';
+        }
 
         try {
-          const response = await fetch(`https://app.baget.ai/api/public/databases/${databaseId}/rows`, {
+          const response = await fetch(`https://app.baget.ai/api/public/databases/${dbId}/rows`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ data }),
@@ -390,8 +383,19 @@
       });
     }
 
-    submitForm('walkerForm', 'walker');
-    submitForm('ownerForm', 'owner');
+    submitForm('walkerForm', walkerDbId, {
+      name: 'name',
+      email: 'email',
+      experience: 'experience',
+      location: 'location',
+    });
+
+    submitForm('ownerForm', bookingDbId, {
+      owner_name: 'owner_name',
+      email: 'email',
+      dog_info: 'dog_info',
+      neighborhood: 'neighborhood',
+    });
   </script>
 </body>
 </html>
